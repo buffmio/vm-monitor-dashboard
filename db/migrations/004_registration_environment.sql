@@ -1,0 +1,2 @@
+ALTER TABLE vm_registrations
+  ADD COLUMN IF NOT EXISTS environment TEXT NOT NULL DEFAULT '';
