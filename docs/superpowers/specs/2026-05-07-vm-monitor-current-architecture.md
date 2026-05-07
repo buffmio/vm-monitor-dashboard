@@ -364,6 +364,14 @@ go test ./...
 go build ./cmd/vm-agent
 ```
 
+Linux systemd Agent deployment:
+
+```bash
+sudo ./scripts/install-agent-systemd.sh
+```
+
+The installer prompts for panel URL, Agent Key, Location, heartbeat interval, and Agent binary path, then creates `vm-monitor-agent.service`.
+
 Runtime Agent smoke test:
 
 ```bash
@@ -386,7 +394,6 @@ Expected behavior:
 - Add real alert generation rules.
 - Add retention policy for `vm_metrics`.
 - Add packaged Agent binary release workflow.
-- Add systemd service template for Linux Agent deployment.
 - Add Windows Agent support if needed.
 - Add stronger secret handling for LDAP bind password.
 - Add full LDAP integration tests with a disposable LDAP server.

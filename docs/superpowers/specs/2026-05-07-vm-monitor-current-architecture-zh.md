@@ -368,6 +368,14 @@ go test ./...
 go build ./cmd/vm-agent
 ```
 
+Linux systemd 部署 Agent：
+
+```bash
+sudo ./scripts/install-agent-systemd.sh
+```
+
+该脚本会交互式填写面板地址、Agent Key、Location、采样间隔和 Agent 二进制路径，并创建 `vm-monitor-agent.service`。
+
 运行时 Agent 冒烟测试：
 
 ```bash
@@ -390,7 +398,6 @@ go run ./cmd/vm-agent
 - 增加真实告警生成规则。
 - 为 `vm_metrics` 增加保留策略。
 - 增加打包 Agent binary 的 release 流程。
-- 增加 Linux Agent 的 systemd service 模板。
 - 如有需要，增加 Windows Agent 支持。
 - 增强 LDAP bind password 的密钥处理。
 - 使用一次性 LDAP server 增加完整 LDAP 集成测试。

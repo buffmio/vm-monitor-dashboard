@@ -203,6 +203,44 @@ export MONITOR_LOCATION="Shanghai DC A / Rack 03"
 ./vm-agent-linux-amd64
 ```
 
+### 使用 systemd 部署 Agent
+
+把 Agent 二进制和安装脚本复制到被监控 VM，然后执行交互式安装：
+
+```bash
+sudo ./scripts/install-agent-systemd.sh
+```
+
+脚本会依次询问：
+
+- 面板地址，例如 `http://panel-host:8080`
+- Settings 页面生成的 Agent Key
+- Location
+- heartbeat 间隔秒数
+- Agent 二进制路径
+
+安装后 systemd 会托管 Agent，并设置开机自启。
+
+常用管理命令：
+
+```bash
+sudo systemctl status vm-monitor-agent
+sudo journalctl -u vm-monitor-agent -f
+sudo systemctl restart vm-monitor-agent
+sudo systemctl stop vm-monitor-agent
+```
+
+也可以非交互安装：
+
+```bash
+sudo ./scripts/install-agent-systemd.sh \
+  --server-url http://panel-host:8080 \
+  --agent-key vma_... \
+  --location "Shanghai DC A / Rack 03" \
+  --interval 30 \
+  --binary ./vm-agent-linux-amd64
+```
+
 ## 验证命令
 
 前端测试：
