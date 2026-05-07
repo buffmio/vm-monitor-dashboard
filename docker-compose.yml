@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-vm_monitor}
+      POSTGRES_USER: ${POSTGRES_USER:-vm_monitor}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vm_monitor_change_me}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      MONITOR_ADDR: :8080
+      MONITOR_SESSION_SECRET: ${MONITOR_SESSION_SECRET:-change-this-session-secret}
+      DATABASE_URL: postgres://${POSTGRES_USER:-vm_monitor}:${POSTGRES_PASSWORD:-vm_monitor_change_me}@postgres:5432/${POSTGRES_DB:-vm_monitor}?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["/bin/sh", "-c", "/app/server migrate && /app/server serve"]
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    depends_on:
+      - api
+    ports:
+      - "${MONITOR_WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
