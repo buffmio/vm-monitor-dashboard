@@ -144,7 +144,7 @@ export async function fetchAdGroups(token?: string): Promise<AdGroup[]> {
     return [
       {
         id: 'demo-ops-group',
-        name: 'VM Monitor Operators',
+        name: 'VM Monitor 运维组',
         distinguishedName: 'CN=VM Monitor Operators,OU=Groups,DC=example,DC=com',
         enabled: true
       }
@@ -163,7 +163,7 @@ export async function fetchAgentKeys(token?: string): Promise<AgentKey[]> {
     return [
       {
         id: 'demo-key',
-        name: 'Lab VM enrollment',
+        name: '实验室 VM 接入',
         prefix: 'vma_demo123',
         enabled: true,
         createdAt: '2026-05-07T09:00:00+08:00'

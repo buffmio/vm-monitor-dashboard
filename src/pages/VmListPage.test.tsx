@@ -18,23 +18,23 @@ describe('VmListPage', () => {
   it('renders the VM table on a dedicated page', () => {
     renderPage();
 
-    expect(screen.getByRole('heading', { name: /virtual machines/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /虚拟机/i })).toBeInTheDocument();
     expect(screen.getByRole('table')).toBeInTheDocument();
-    expect(screen.getByText(/machines match the current view/i)).toBeInTheDocument();
+    expect(screen.getByText(/台机器符合当前视图/i)).toBeInTheDocument();
   });
 
   it('presents location without repeating hostname as a host column', () => {
     renderPage();
 
     expect(screen.queryByRole('columnheader', { name: 'Host' })).not.toBeInTheDocument();
-    expect(screen.getByRole('columnheader', { name: 'Location' })).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/search name, ip, or location/i)).toBeInTheDocument();
+    expect(screen.getByRole('columnheader', { name: '位置' })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/搜索名称、IP 或位置/i)).toBeInTheDocument();
   });
 
   it('uses status query params as the initial filter', () => {
     renderPage('/vms?status=critical');
 
-    expect(screen.getByRole('button', { name: /critical/i })).toHaveClass('selected');
-    expect(screen.getByText(/1 machines match the current view/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /严重/i })).toHaveClass('selected');
+    expect(screen.getByText(/1 台机器符合当前视图/i)).toBeInTheDocument();
   });
 });

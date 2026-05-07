@@ -64,13 +64,13 @@ export function Dashboard() {
     <div className="page-stack">
       <header className="page-header">
         <div>
-          <span className="eyebrow">Production fleet</span>
-          <h1>VM Monitoring Overview</h1>
-          <p>Fleet health, resource pressure, alerts, and recent VM activity.</p>
+          <span className="eyebrow">生产资源池</span>
+          <h1>VM 监控总览</h1>
+          <p>查看整体健康、资源压力、告警和近期 VM 活动。</p>
         </div>
         <div className="header-actions">
           <StatusBadge severity={summary.critical > 0 ? 'critical' : summary.warning > 0 ? 'warning' : 'info'} label={
-            summary.critical > 0 ? 'Attention required' : summary.warning > 0 ? 'Warnings active' : 'Healthy'
+            summary.critical > 0 ? '需要关注' : summary.warning > 0 ? '存在告警' : '健康'
           } />
           <button
             className={`button secondary refresh-button ${isRefreshing ? 'refreshing' : ''}`}
@@ -78,41 +78,41 @@ export function Dashboard() {
             onClick={refreshTelemetry}
           >
             <Activity size={16} />
-            {isRefreshing ? 'Refreshing...' : 'Refresh'}
+            {isRefreshing ? '刷新中...' : '刷新'}
           </button>
         </div>
       </header>
 
       <section className={`status-strip ${isRefreshing ? 'refresh-pulse' : ''}`} aria-live="polite">
         <div>
-          <span>Environment</span>
-          <strong>Production and staging</strong>
+          <span>环境</span>
+          <strong>生产与预发布</strong>
         </div>
         <div>
-          <span>Last refreshed</span>
+          <span>最后刷新</span>
           <strong>{lastRefreshed}</strong>
         </div>
         <div>
-          <span>Data source</span>
-          <strong>{token ? 'Panel API' : 'Local demo fallback'}</strong>
+          <span>数据源</span>
+          <strong>{token ? '面板 API' : '本地演示数据'}</strong>
         </div>
       </section>
 
       <section className="metric-grid">
-        <MetricCard label="Total VMs" value={summary.total} detail="Open full VM inventory" tone="accent" icon={<Server size={18} />} to="/vms" />
-        <MetricCard label="Running" value={summary.running} detail={`${summary.stopped} stopped`} tone="good" icon={<Activity size={18} />} to="/vms?status=running" />
-        <MetricCard label="Warnings" value={summary.warning} detail={`${summary.activeAlerts} active alerts`} tone="warning" icon={<AlertTriangle size={18} />} to="/vms?status=warning" />
-        <MetricCard label="Critical" value={summary.critical} detail="Needs operator review" tone="critical" icon={<AlertTriangle size={18} />} to="/vms?status=critical" />
-        <MetricCard label="Avg CPU" value={`${summary.averageCpu}%`} detail="Fleet average" tone="neutral" icon={<Cpu size={18} />} />
-        <MetricCard label="Avg Memory" value={`${summary.averageMemory}%`} detail="Fleet average" tone="neutral" icon={<MemoryStick size={18} />} />
+        <MetricCard label="VM 总数" value={summary.total} detail="打开完整 VM 清单" tone="accent" icon={<Server size={18} />} to="/vms" />
+        <MetricCard label="运行中" value={summary.running} detail={`${summary.stopped} 台已停止`} tone="good" icon={<Activity size={18} />} to="/vms?status=running" />
+        <MetricCard label="警告" value={summary.warning} detail={`${summary.activeAlerts} 条活跃告警`} tone="warning" icon={<AlertTriangle size={18} />} to="/vms?status=warning" />
+        <MetricCard label="严重" value={summary.critical} detail="需要运维确认" tone="critical" icon={<AlertTriangle size={18} />} to="/vms?status=critical" />
+        <MetricCard label="平均 CPU" value={`${summary.averageCpu}%`} detail="资源池平均值" tone="neutral" icon={<Cpu size={18} />} />
+        <MetricCard label="平均内存" value={`${summary.averageMemory}%`} detail="资源池平均值" tone="neutral" icon={<MemoryStick size={18} />} />
       </section>
 
       <section className="content-grid">
         <div className="panel wide">
           <div className="section-heading">
             <div>
-              <h2>Resource Trends</h2>
-              <p>{trendSource ? `Representative telemetry from ${trendSource.name}` : 'Approved VMs will appear here after Agent enrollment'}</p>
+              <h2>资源趋势</h2>
+              <p>{trendSource ? `来自 ${trendSource.name} 的代表性遥测数据` : 'Agent 注册并审批后，VM 遥测会显示在这里'}</p>
             </div>
             <HardDrive size={18} />
           </div>
@@ -120,12 +120,12 @@ export function Dashboard() {
             {trendSource ? (
               <>
                 <LineChart title="CPU" points={trendSource.metricHistory} metric="cpu" unit="%" tone="blue" />
-                <LineChart title="Memory" points={trendSource.metricHistory} metric="memory" unit="%" tone="violet" />
-                <LineChart title="Disk" points={trendSource.metricHistory} metric="disk" unit="%" tone="amber" />
-                <LineChart title="Network In" points={trendSource.metricHistory} metric="networkIn" unit="MB/s" tone="green" />
+                <LineChart title="内存" points={trendSource.metricHistory} metric="memory" unit="%" tone="violet" />
+                <LineChart title="磁盘" points={trendSource.metricHistory} metric="disk" unit="%" tone="amber" />
+                <LineChart title="网络入站" points={trendSource.metricHistory} metric="networkIn" unit="MB/s" tone="green" />
               </>
             ) : (
-              <div className="empty-state">No approved VM telemetry yet.</div>
+              <div className="empty-state">暂无已审批 VM 遥测数据。</div>
             )}
           </div>
         </div>
@@ -133,8 +133,8 @@ export function Dashboard() {
         <aside className="panel">
           <div className="section-heading">
             <div>
-              <h2>Health Summary</h2>
-              <p>Active alerts and latest events</p>
+              <h2>健康摘要</h2>
+              <p>活跃告警和最新事件</p>
             </div>
           </div>
           <div className="alert-list">
@@ -147,7 +147,7 @@ export function Dashboard() {
                 </div>
               </div>
             ))}
-            {activeAlerts.length === 0 ? <div className="empty-state">No active alerts.</div> : null}
+            {activeAlerts.length === 0 ? <div className="empty-state">暂无活跃告警。</div> : null}
           </div>
           <div className="event-list">
             {recentEvents.map((event) => (
@@ -156,7 +156,7 @@ export function Dashboard() {
                 <strong>{event.message}</strong>
               </div>
             ))}
-            {recentEvents.length === 0 ? <div className="empty-state">No recent events.</div> : null}
+            {recentEvents.length === 0 ? <div className="empty-state">暂无近期事件。</div> : null}
           </div>
         </aside>
       </section>

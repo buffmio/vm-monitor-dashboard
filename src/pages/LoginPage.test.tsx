@@ -18,8 +18,8 @@ describe('LoginPage', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByRole('heading', { name: /sign in/i })).toBeInTheDocument();
-    expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /登录/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/用户名/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/密码/i)).toBeInTheDocument();
   });
 });

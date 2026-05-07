@@ -41,19 +41,19 @@ export function AlertsPage() {
     <div className="page-stack">
       <header className="page-header">
         <div>
-          <span className="eyebrow">Alert center</span>
-          <h1>Alerts</h1>
-          <p>Active VM alerts and recent operational events from mock telemetry.</p>
+          <span className="eyebrow">告警中心</span>
+          <h1>告警</h1>
+          <p>查看活跃 VM 告警和近期运维事件。</p>
         </div>
-        <StatusBadge severity={activeAlerts.some((alert) => alert.severity === 'critical') ? 'critical' : 'warning'} label={`${activeAlerts.length} active`} />
+        <StatusBadge severity={activeAlerts.some((alert) => alert.severity === 'critical') ? 'critical' : 'warning'} label={`${activeAlerts.length} 条活跃`} />
       </header>
 
       <section className="content-grid">
         <div className="panel wide">
           <div className="section-heading">
             <div>
-              <h2>Active Alerts</h2>
-              <p>Sorted by severity for quick triage.</p>
+              <h2>活跃告警</h2>
+              <p>按严重程度排序，便于快速处置。</p>
             </div>
             <AlertTriangle size={18} />
           </div>
@@ -76,8 +76,8 @@ export function AlertsPage() {
         <aside className="panel">
           <div className="section-heading">
             <div>
-              <h2>Recent Events</h2>
-              <p>Latest activity across the monitored fleet.</p>
+              <h2>近期事件</h2>
+              <p>监控资源池中的最新活动。</p>
             </div>
           </div>
           <div className="event-list compact-events">

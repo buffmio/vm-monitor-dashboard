@@ -15,23 +15,23 @@ export function VmTable({ vms, onOpenVm, onDeleteVm }: VmTableProps) {
         <thead>
           <tr>
             <th>VM</th>
-            <th>Status</th>
+            <th>状态</th>
             <th>IP</th>
-            <th>Location</th>
-            <th>Uptime</th>
+            <th>位置</th>
+            <th>运行时长</th>
             <th>CPU</th>
-            <th>Memory</th>
-            <th>Disk</th>
-            <th>Network</th>
-            <th>Alerts</th>
-            {onDeleteVm ? <th>Actions</th> : null}
+            <th>内存</th>
+            <th>磁盘</th>
+            <th>网络</th>
+            <th>告警</th>
+            {onDeleteVm ? <th>操作</th> : null}
           </tr>
         </thead>
         <tbody>
           {vms.length === 0 ? (
             <tr>
               <td colSpan={onDeleteVm ? 11 : 10}>
-                <div className="empty-state">No virtual machines match the current filters.</div>
+                <div className="empty-state">没有符合当前筛选条件的虚拟机。</div>
               </td>
             </tr>
           ) : (
@@ -67,7 +67,7 @@ export function VmTable({ vms, onOpenVm, onDeleteVm }: VmTableProps) {
                           onDeleteVm(vm);
                         }}
                       >
-                        Delete
+                        删除
                       </button>
                     </td>
                   ) : null}
