@@ -24,7 +24,7 @@ export function LoginPage() {
       await auth.login(username, password);
       navigate(returnTarget, { replace: true });
     } catch {
-      setError('Login failed. Check the local admin password or AD account access.');
+      setError('登录失败，请检查本地管理员密码或 AD 账号权限。');
     }
   }
 
@@ -37,25 +37,25 @@ export function LoginPage() {
           </div>
           <div>
             <strong>VM Monitor</strong>
-            <span>Operations Console</span>
+            <span>运维控制台</span>
           </div>
         </div>
         <div>
-          <span className="eyebrow">Authentication</span>
-          <h1>Sign in</h1>
+          <span className="eyebrow">身份验证</span>
+          <h1>登录</h1>
         </div>
         <label className="form-field">
-          <span>Username</span>
+          <span>用户名</span>
           <input value={username} onChange={(event) => setUsername(event.target.value)} autoComplete="username" required />
         </label>
         <label className="form-field">
-          <span>Password</span>
+          <span>密码</span>
           <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" autoComplete="current-password" required />
         </label>
         {error ? <div className="form-error">{error}</div> : null}
         <button className="button primary" type="submit">
           <LockKeyhole size={16} />
-          Sign in
+          登录
         </button>
       </form>
     </main>

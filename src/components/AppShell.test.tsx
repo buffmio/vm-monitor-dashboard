@@ -13,9 +13,9 @@ describe('AppShell', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByRole('link', { name: /overview/i })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: /virtual machines/i })).toHaveAttribute('href', '/vms');
-    expect(screen.getByRole('link', { name: /alerts/i })).toHaveAttribute('href', '/alerts');
-    expect(screen.getByRole('link', { name: /settings/i })).toHaveAttribute('href', '/settings');
+    expect(screen.getByRole('link', { name: /总览/i })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /虚拟机/i })).toHaveAttribute('href', '/vms');
+    expect(screen.getByRole('link', { name: /告警/i })).toHaveAttribute('href', '/alerts');
+    expect(screen.getByRole('link', { name: /设置/i })).toHaveAttribute('href', '/settings');
   });
 });

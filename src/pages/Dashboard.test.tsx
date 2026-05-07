@@ -21,11 +21,11 @@ describe('Dashboard', () => {
 
     renderDashboard();
 
-    const refreshButton = screen.getByRole('button', { name: /refresh/i });
+    const refreshButton = screen.getByRole('button', { name: /刷新/i });
     fireEvent.click(refreshButton);
 
     expect(refreshButton).toHaveClass('refreshing');
-    expect(screen.getByText(/refreshing/i)).toBeInTheDocument();
+    expect(screen.getByText(/刷新中/i)).toBeInTheDocument();
 
     act(() => {
       vi.runAllTimers();
@@ -36,10 +36,10 @@ describe('Dashboard', () => {
   it('uses summary cards as links to the VM list instead of rendering the VM table on the homepage', () => {
     renderDashboard();
 
-    expect(screen.getByRole('link', { name: /total vms/i })).toHaveAttribute('href', '/vms');
-    expect(screen.getByRole('link', { name: /running/i })).toHaveAttribute('href', '/vms?status=running');
-    expect(screen.getByRole('link', { name: /warnings/i })).toHaveAttribute('href', '/vms?status=warning');
-    expect(screen.getByRole('link', { name: /critical/i })).toHaveAttribute('href', '/vms?status=critical');
+    expect(screen.getByRole('link', { name: /VM 总数/i })).toHaveAttribute('href', '/vms');
+    expect(screen.getByRole('link', { name: /运行中/i })).toHaveAttribute('href', '/vms?status=running');
+    expect(screen.getByRole('link', { name: /警告/i })).toHaveAttribute('href', '/vms?status=warning');
+    expect(screen.getByRole('link', { name: /严重/i })).toHaveAttribute('href', '/vms?status=critical');
     expect(screen.queryByRole('table')).not.toBeInTheDocument();
   });
 });

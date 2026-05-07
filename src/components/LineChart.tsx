@@ -27,7 +27,7 @@ export function LineChart({ title, points, metric, unit, tone = 'blue' }: LineCh
     return (
       <section className="chart-panel">
         <div className="chart-title">{title}</div>
-        <div className="empty-chart">No metric history</div>
+        <div className="empty-chart">暂无指标历史</div>
       </section>
     );
   }
@@ -57,9 +57,9 @@ export function LineChart({ title, points, metric, unit, tone = 'blue' }: LineCh
         <strong>{activePoint ? formatMetric(activePoint.value, unit) : formatMetric(values[values.length - 1], unit)}</strong>
       </div>
       <div className={`chart-hover-readout ${activePoint ? 'visible' : ''}`}>
-        {activePoint ? `${activePoint.point.time} / ${formatMetric(activePoint.value, unit)}` : 'Hover a point for details'}
+        {activePoint ? `${activePoint.point.time} / ${formatMetric(activePoint.value, unit)}` : '悬停数据点查看详情'}
       </div>
-      <svg className="line-chart" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title} trend`}>
+      <svg className="line-chart" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title} 趋势`}>
         <polyline points={coordinates.map(({ x, y }) => `${x},${y}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="4" />
         {activePoint ? (
           <g className="chart-guide" pointerEvents="none">
@@ -90,8 +90,8 @@ export function LineChart({ title, points, metric, unit, tone = 'blue' }: LineCh
         ))}
       </svg>
       <div className="chart-scale">
-        <span>Min {formatMetric(min, unit)}</span>
-        <span>Max {formatMetric(max, unit)}</span>
+        <span>最小 {formatMetric(min, unit)}</span>
+        <span>最大 {formatMetric(max, unit)}</span>
       </div>
     </section>
   );

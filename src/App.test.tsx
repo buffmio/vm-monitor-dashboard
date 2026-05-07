@@ -24,7 +24,7 @@ describe('App navigation alignment', () => {
     );
     scrollTo.mockClear();
 
-    fireEvent.click(screen.getByRole('link', { name: /settings/i }));
+    fireEvent.click(screen.getByRole('link', { name: /设置/i }));
 
     await waitFor(() => {
       expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
@@ -47,11 +47,11 @@ describe('App navigation alignment', () => {
     fireEvent.click(await screen.findByText('db-prod-02'));
     expect(await screen.findByRole('heading', { name: 'db-prod-02' })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /back to vm list/i }));
+    fireEvent.click(screen.getByRole('button', { name: /返回 VM 列表/i }));
 
-    expect(await screen.findByRole('heading', { name: /virtual machines/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /critical/i })).toHaveClass('selected');
-    expect(screen.getByText(/1 machines match the current view/i)).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /虚拟机/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /严重/i })).toHaveClass('selected');
+    expect(screen.getByText(/1 台机器符合当前视图/i)).toBeInTheDocument();
   });
 
   it('returns from VM detail to the originating alerts page', async () => {
@@ -67,13 +67,13 @@ describe('App navigation alignment', () => {
       </MemoryRouter>
     );
 
-    fireEvent.click(await screen.findByRole('link', { name: /db-prod-02 \/ disk/i }));
+    fireEvent.click(await screen.findByRole('link', { name: /db-prod-02 \/ 磁盘/i }));
     expect(await screen.findByRole('heading', { name: 'db-prod-02' })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /back to alerts/i }));
+    fireEvent.click(screen.getByRole('button', { name: /返回告警/i }));
 
-    expect(await screen.findByRole('heading', { name: 'Alerts', level: 1 })).toBeInTheDocument();
-    expect(screen.getByText(/active vm alerts/i)).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: '告警', level: 1 })).toBeInTheDocument();
+    expect(screen.getByText(/查看活跃 VM 告警/i)).toBeInTheDocument();
   });
 
   it('redirects unauthenticated users to login', async () => {
@@ -85,6 +85,6 @@ describe('App navigation alignment', () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findByRole('heading', { name: /sign in/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /登录/i })).toBeInTheDocument();
   });
 });

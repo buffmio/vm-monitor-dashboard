@@ -18,10 +18,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'running',
     ipAddress: '10.24.1.12',
     host: 'hv-core-01',
-    region: 'Core DC A',
+    region: '核心机房 A',
     os: 'Ubuntu 24.04 LTS',
-    owner: 'Platform',
-    environment: 'Production',
+    owner: '平台团队',
+    environment: '生产',
     vcpu: 8,
     memoryGb: 32,
     storageGb: 500,
@@ -34,8 +34,8 @@ export const mockVms: VirtualMachine[] = [
         id: 'alert-api-memory',
         vmId: 'vm-api-prod-01',
         severity: 'warning',
-        resource: 'memory',
-        message: 'Memory pressure has stayed above 68% for 20 minutes.',
+        resource: '内存',
+        message: '内存压力已连续 20 分钟高于 68%。',
         timestamp: '2026-05-06T14:42:00+08:00',
         status: 'active'
       }
@@ -44,15 +44,15 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-api-scale',
         vmId: 'vm-api-prod-01',
-        type: 'autoscale',
-        message: 'Traffic balancer shifted 12% more requests to this VM.',
+        type: '自动扩缩容',
+        message: '流量均衡器将 12% 的请求切换到此 VM。',
         timestamp: '2026-05-06T14:20:00+08:00'
       },
       {
         id: 'event-api-patch',
         vmId: 'vm-api-prod-01',
-        type: 'patch',
-        message: 'Security patch baseline verified.',
+        type: '补丁',
+        message: '安全补丁基线校验完成。',
         timestamp: '2026-05-06T11:05:00+08:00'
       }
     ]
@@ -63,10 +63,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'critical',
     ipAddress: '10.24.2.18',
     host: 'hv-storage-02',
-    region: 'Storage Room 2',
+    region: '存储机房 2',
     os: 'Rocky Linux 9',
-    owner: 'Database',
-    environment: 'Production',
+    owner: '数据库团队',
+    environment: '生产',
     vcpu: 16,
     memoryGb: 96,
     storageGb: 2048,
@@ -79,8 +79,8 @@ export const mockVms: VirtualMachine[] = [
         id: 'alert-db-disk',
         vmId: 'vm-db-prod-02',
         severity: 'critical',
-        resource: 'disk',
-        message: 'Database volume is above 94% capacity.',
+        resource: '磁盘',
+        message: '数据库卷容量使用率已超过 94%。',
         timestamp: '2026-05-06T15:01:00+08:00',
         status: 'active'
       },
@@ -88,8 +88,8 @@ export const mockVms: VirtualMachine[] = [
         id: 'alert-db-cpu',
         vmId: 'vm-db-prod-02',
         severity: 'warning',
-        resource: 'cpu',
-        message: 'CPU saturation is trending upward during backup window.',
+        resource: 'CPU',
+        message: '备份窗口期间 CPU 饱和度持续上升。',
         timestamp: '2026-05-06T14:36:00+08:00',
         status: 'active'
       }
@@ -98,15 +98,15 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-db-backup',
         vmId: 'vm-db-prod-02',
-        type: 'backup',
-        message: 'Incremental backup started.',
+        type: '备份',
+        message: '增量备份已开始。',
         timestamp: '2026-05-06T14:30:00+08:00'
       },
       {
         id: 'event-db-replica',
         vmId: 'vm-db-prod-02',
-        type: 'replication',
-        message: 'Replica lag increased to 11 seconds.',
+        type: '复制',
+        message: '副本延迟增加到 11 秒。',
         timestamp: '2026-05-06T14:12:00+08:00'
       }
     ]
@@ -117,10 +117,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'warning',
     ipAddress: '10.24.3.33',
     host: 'hv-memory-01',
-    region: 'Memory Rack Zone',
+    region: '内存机柜区',
     os: 'Debian 12',
-    owner: 'Platform',
-    environment: 'Production',
+    owner: '平台团队',
+    environment: '生产',
     vcpu: 8,
     memoryGb: 64,
     storageGb: 256,
@@ -133,8 +133,8 @@ export const mockVms: VirtualMachine[] = [
         id: 'alert-cache-memory',
         vmId: 'vm-cache-prod-03',
         severity: 'warning',
-        resource: 'memory',
-        message: 'Redis memory fragmentation ratio crossed the warning threshold.',
+        resource: '内存',
+        message: 'Redis 内存碎片率超过警告阈值。',
         timestamp: '2026-05-06T13:58:00+08:00',
         status: 'active'
       }
@@ -143,8 +143,8 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-cache-flush',
         vmId: 'vm-cache-prod-03',
-        type: 'maintenance',
-        message: 'Scheduled keyspace cleanup completed.',
+        type: '维护',
+        message: '计划内 keyspace 清理已完成。',
         timestamp: '2026-05-06T12:00:00+08:00'
       }
     ]
@@ -155,10 +155,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'running',
     ipAddress: '10.44.8.19',
     host: 'hv-stage-02',
-    region: 'Staging Lab',
+    region: '预发布实验室',
     os: 'Ubuntu 22.04 LTS',
-    owner: 'Data',
-    environment: 'Staging',
+    owner: '数据团队',
+    environment: '预发布',
     vcpu: 6,
     memoryGb: 24,
     storageGb: 400,
@@ -171,8 +171,8 @@ export const mockVms: VirtualMachine[] = [
         id: 'alert-worker-resolved',
         vmId: 'vm-worker-stage-01',
         severity: 'info',
-        resource: 'queue',
-        message: 'Queue delay recovered after worker restart.',
+        resource: '队列',
+        message: 'Worker 重启后队列延迟已恢复。',
         timestamp: '2026-05-06T10:22:00+08:00',
         status: 'resolved'
       }
@@ -181,8 +181,8 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-worker-deploy',
         vmId: 'vm-worker-stage-01',
-        type: 'deploy',
-        message: 'Build 2026.05.06.2 deployed to staging.',
+        type: '部署',
+        message: 'Build 2026.05.06.2 已部署到预发布环境。',
         timestamp: '2026-05-06T13:10:00+08:00'
       }
     ]
@@ -193,10 +193,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'stopped',
     ipAddress: '10.72.4.41',
     host: 'hv-lab-03',
-    region: 'Developer Lab',
+    region: '开发实验室',
     os: 'Windows Server 2022',
-    owner: 'Developer Experience',
-    environment: 'Development',
+    owner: '开发体验团队',
+    environment: '开发',
     vcpu: 4,
     memoryGb: 16,
     storageGb: 250,
@@ -209,8 +209,8 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-ci-stop',
         vmId: 'vm-ci-dev-04',
-        type: 'power',
-        message: 'VM stopped after idle timeout.',
+        type: '电源',
+        message: 'VM 因空闲超时已停止。',
         timestamp: '2026-05-06T09:45:00+08:00'
       }
     ]
@@ -221,10 +221,10 @@ export const mockVms: VirtualMachine[] = [
     status: 'running',
     ipAddress: '10.24.7.55',
     host: 'hv-gpu-01',
-    region: 'GPU Suite',
+    region: 'GPU 机房',
     os: 'Ubuntu 24.04 LTS',
-    owner: 'Analytics',
-    environment: 'Production',
+    owner: '分析团队',
+    environment: '生产',
     vcpu: 12,
     memoryGb: 64,
     storageGb: 1024,
@@ -237,8 +237,8 @@ export const mockVms: VirtualMachine[] = [
       {
         id: 'event-analytics-job',
         vmId: 'vm-analytics-prod-05',
-        type: 'job',
-        message: 'Nightly aggregation finished in 31 minutes.',
+        type: '任务',
+        message: '夜间聚合任务 31 分钟完成。',
         timestamp: '2026-05-06T08:31:00+08:00'
       }
     ]
