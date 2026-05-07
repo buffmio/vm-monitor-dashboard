@@ -3,6 +3,7 @@ node_modules/
 
 # Frontend build output
 dist/
+build/
 
 # TypeScript incremental build state
 *.tsbuildinfo

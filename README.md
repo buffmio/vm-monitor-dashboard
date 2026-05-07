@@ -56,6 +56,51 @@ Vite 会把 `/api` 代理到：
 http://127.0.0.1:8080
 ```
 
+## 容器化部署
+
+项目提供 Docker Compose 部署文件：
+
+```bash
+cp .env.example .env
+docker compose up -d --build
+```
+
+启动后访问：
+
+```text
+http://localhost:8080
+```
+
+Compose 会启动：
+
+- `postgres`：PostgreSQL 数据库。
+- `api`：Go API 服务，启动前自动执行 migration。
+- `web`：Nginx 托管前端，并把 `/api` 反代到 `api:8080`。
+
+首次启动后创建本地管理员：
+
+```bash
+docker compose exec api /app/server create-admin --username admin
+```
+
+生产部署前请修改 `.env` 中的：
+
+- `POSTGRES_PASSWORD`
+- `MONITOR_SESSION_SECRET`
+- `MONITOR_WEB_PORT`
+
+停止服务：
+
+```bash
+docker compose down
+```
+
+如需连同数据库 volume 一起删除：
+
+```bash
+docker compose down -v
+```
+
 ## API 服务
 
 进入 server 目录：
@@ -122,6 +167,41 @@ go run ./cmd/vm-agent
 ```
 
 首次 heartbeat 不会直接创建正式 VM，而是进入待审批列表。管理员批准后，该 VM 才会出现在 VM 列表和首页统计中。
+
+### 编译 Agent 二进制
+
+默认编译 Linux amd64 Agent：
+
+```bash
+./scripts/build-agent.sh
+```
+
+输出文件：
+
+```text
+build/agent/vm-agent-linux-amd64
+```
+
+如果 `go` 不在 `PATH` 中，可以指定 `GO_BIN`：
+
+```bash
+GO_BIN=/path/to/go ./scripts/build-agent.sh
+```
+
+交叉编译示例：
+
+```bash
+GOOS=linux GOARCH=arm64 ./scripts/build-agent.sh
+```
+
+把二进制复制到被监控 VM 后，设置环境变量并运行：
+
+```bash
+export MONITOR_SERVER_URL="http://panel-host:8080"
+export MONITOR_AGENT_KEY="vma_..."
+export MONITOR_LOCATION="Shanghai DC A / Rack 03"
+./vm-agent-linux-amd64
+```
 
 ## 验证命令
 
