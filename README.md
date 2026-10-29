@@ -1,6 +1,10 @@
 # VM Monitor Dashboard
 
-VM Monitor Dashboard 是一个 VM 监控面板示例项目，包含 React 前端、Go API 服务、PostgreSQL 数据库迁移和 Go VM Agent。
+[English](README.en.md)
+
+## 中文说明
+
+VM Monitor Dashboard 是一套自托管的虚拟机监控面板，包含 React 前端、Go API 服务、PostgreSQL 数据库和 Go VM Agent。
 
 当前能力：
 
@@ -143,7 +147,7 @@ http://127.0.0.1:8080
 
 服务端通过 `DATABASE_URL` 连接 PostgreSQL。
 
-示例：
+配置方式：
 
 ```bash
 export DATABASE_URL="postgres://<user>:<password>@127.0.0.1:55432/vm_monitor?sslmode=disable"
@@ -188,7 +192,7 @@ build/agent/vm-agent-linux-amd64
 GO_BIN=/path/to/go ./scripts/build-agent.sh
 ```
 
-交叉编译示例：
+交叉编译 Agent：
 
 ```bash
 GOOS=linux GOARCH=arm64 ./scripts/build-agent.sh
